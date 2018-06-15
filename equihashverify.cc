@@ -9,7 +9,7 @@
 #include <vector>
 using namespace v8;
 
-int verifyEH(const char *hdr, const std::vector<unsigned char> &soln, unsigned int n = 200, unsigned int k = 9){
+int verifyEH(const char *hdr, const std::vector<unsigned char> &soln, unsigned int n = 192, unsigned int k = 7){
   // Hash state
   crypto_generichash_blake2b_state state;
   EhInitialiseState(n, k, state);
@@ -40,8 +40,8 @@ void Verify(const v8::FunctionCallbackInfo<Value>& args) {
   Isolate* isolate = Isolate::GetCurrent();
   HandleScope scope(isolate);
 
-  unsigned int n = 200;
-  unsigned int k = 9;
+  unsigned int n = 192;
+  unsigned int k = 7;
 
   if (args.Length() < 2) {
   isolate->ThrowException(Exception::TypeError(
